@@ -68,6 +68,7 @@ class LizardExtension(ExtensionBase):  # pylint: disable=R0903
     def __init__(self):
         super(LizardExtension, self).__init__(None)
         self.structure_piles = [0]
+        self.last_token = ''
 
     def pile_up_within_block(self):
         self.structure_piles[-1] += 1
@@ -87,7 +88,10 @@ class LizardExtension(ExtensionBase):  # pylint: disable=R0903
 
     @CodeStateMachine.read_inside_brackets_then("()")
     def _in_structure_head(self, token):
-        self.pile_up_within_block()
+        if self.last_token == 'else' and token == 'if':
+            pass
+        else:
+            self.pile_up_within_block()
         self._state = self._state_global
         self._state(token)
 
