@@ -15,7 +15,7 @@ from lizard_languages.code_reader import CodeStateMachine
 from .extension_base import ExtensionBase
 
 
-DEFAULT_NS_THRESHOLD = 3
+DEFAULT_NS_THRESHOLD = 2
 
 
 class LizardExtension(ExtensionBase):  # pylint: disable=R0903
